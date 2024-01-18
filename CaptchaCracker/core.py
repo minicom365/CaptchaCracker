@@ -43,7 +43,7 @@ class CreateModel:
         # 학습 이미지 파일 경로 리스트
         self.images = sorted(train_img_path)
         # 학습 이미지 파일 라벨 리스트
-        self.labels = [img.split(os.path.sep)[-1].split(".png")[0] for img in self.images]
+        self.labels = [img.split(os.path.sep)[-1].split(".")[0] for img in self.images]
         # 라벨 SET
         self.characters = set(char for label in self.labels for char in label)
         # 라벨 최대 길이
@@ -60,7 +60,7 @@ class CreateModel:
         
     def train_model(self, epochs=100, earlystopping=False):
         # 학습 및 검증을 위한 배치 사이즈 정의
-        batch_size = 16
+        batch_size = 256
         # 다운 샘플링 요인 수 (Conv: 2, Pooling: 2)
         downsample_factor = 4
         
